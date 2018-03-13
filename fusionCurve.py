@@ -145,64 +145,14 @@ def frange(x, y, jump=1.0):
 
 class Curve:
     def __init__(self):
-        self._curveName = defaultCurveName
-        self._xFunction = defaultCurveFunctionX
-        self._yFunction = defaultCurveFunctionY
-        self._zFunction = defaultCurveFunctionZ
+        self.curveName = defaultCurveName
+        self.xFunction = defaultCurveFunctionX
+        self.yFunction = defaultCurveFunctionY
+        self.zFunction = defaultCurveFunctionZ
 
-        self._tStart = defaultTStart
-        self._tEnd = defaultTEnd
-        self._tStep = defaultTStep
-
-    #properties
-    @property
-    def curveName(self):
-        return self._curveName
-    @curveName.setter
-    def curveName(self, value):
-        self._curveName = value
-
-    @property
-    def xFunction(self):
-        return self._xFunction
-    @xFunction.setter
-    def xFunction(self, value):
-        self._xFunction = value
-
-    @property
-    def yFunction(self):
-        return self._yFunction
-    @yFunction.setter
-    def yFunction(self, value):
-        self._yFunction = value
-
-    @property
-    def zFunction(self):
-        return self._zFunction
-    @zFunction.setter
-    def zFunction(self, value):
-        self._zFunction = value
-
-    @property
-    def tStart(self):
-        return self._tStart
-    @tStart.setter
-    def tStart(self, value):
-        self._tStart = value
-
-    @property
-    def tEnd(self):
-        return self._tEnd
-    @tEnd.setter
-    def tEnd(self, value):
-        self._tEnd = value
-
-    @property
-    def tStep(self):
-        return self._tStep
-    @tStep.setter
-    def tStep(self, value):
-        self._tStep = value
+        self.tStart = defaultTStart
+        self.tEnd = defaultTEnd
+        self.tStep = defaultTStep
 
     def buildCurve(self):
         global newComp
@@ -235,7 +185,9 @@ class Curve:
         # root = design.rootComponent
         # sketch = root.sketches.add(root.xYConstructionPlane)
 
+        newComp.name = self.curveName
         sketch = newComp.sketches.add(newComp.xYConstructionPlane)
+        sketch.name = self.curveName 
         sketch.sketchCurves.sketchFittedSplines.add(points)
             # sketch.sketchCurves.sketchLines.addByTwoPoints(vertices[(i+1) %6], vertices[i])
 
