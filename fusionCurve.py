@@ -142,6 +142,7 @@ def frange(x, y, jump=1.0):
         i += 1.0
         x = x0 + i * jump
         yield x
+    yield y
 
 class Curve:
     def __init__(self):
@@ -180,16 +181,16 @@ class Curve:
         except:
             print('something wrong')
 
-        # product = app.activeProduct
-        # design = adsk.fusion.Design.cast(product)
-        # root = design.rootComponent
-        # sketch = root.sketches.add(root.xYConstructionPlane)
-
         newComp.name = self.curveName
         sketch = newComp.sketches.add(newComp.xYConstructionPlane)
         sketch.name = self.curveName 
-        sketch.sketchCurves.sketchFittedSplines.add(points)
-            # sketch.sketchCurves.sketchLines.addByTwoPoints(vertices[(i+1) %6], vertices[i])
+
+        try:
+                sketch.sketchCurves.sketchFittedSplines.add(points)
+                # sketch.sketchCurves.sketchLines.addByTwoPoints(vertices[(i+1) %6], vertices[i])
+        except:
+            print('something wrong')
+
 
 
 
