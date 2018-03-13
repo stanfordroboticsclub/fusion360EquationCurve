@@ -1,0 +1,3 @@
+#file is not pip readable as libraries need to be manually installed into fusion 360
+asteval
+six
