@@ -19,9 +19,9 @@ if not my_addin_path in sys.path:
 
 from asteval.asteval import Interpreter
 
-defaultCurveName = 'Curve'
-defaultCurveFunctionX = 'cos(t)'
-defaultCurveFunctionY = 'sin(t)'
+defaultCurveName = 'Equation Curve'
+defaultCurveFunctionX = '50*cos(t)'
+defaultCurveFunctionY = '50*sin(t)'
 defaultCurveFunctionZ = 't'
 
 defaultTStart = '0'
@@ -162,6 +162,10 @@ class Curve:
             ui.messageBox('New component failed to create', 'New Component Failed')
             return
 
+        product = app.activeProduct
+        design = adsk.fusion.Design.cast(product)
+        unitsMgr = design.unitsManager
+
         # Create a new sketch.
         sketches = newComp.sketches
         xyPlane = newComp.xYConstructionPlane
@@ -174,9 +178,11 @@ class Curve:
         try:
             for time in frange(aeval(self.tStart), aeval(self.tEnd), aeval(self.tStep)):
                 aeval.symtable['t'] = time
-                point = adsk.core.Point3D.create(aeval(self.xFunction),
-                                                 aeval(self.yFunction),
-                                                 aeval(self.zFunction))
+                x = unitsMgr.convert(aeval(self.xFunction), unitsMgr.defaultLengthUnits, "internalUnits")
+                y = unitsMgr.convert(aeval(self.yFunction), unitsMgr.defaultLengthUnits, "internalUnits")
+                z = unitsMgr.convert(aeval(self.zFunction), unitsMgr.defaultLengthUnits, "internalUnits")
+
+                point = adsk.core.Point3D.create(x,y,z)
                 points.add(point)
         except:
             print('something wrong')
