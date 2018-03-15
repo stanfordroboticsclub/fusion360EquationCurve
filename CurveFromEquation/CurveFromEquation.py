@@ -1,5 +1,7 @@
-#Author-Michal Adamkiewicz
-#Description-Plot function as sketch
+#Author - Michal Adamkiewicz
+#Email  - mikadam@stanford.edu
+#License - GNU GPL v3
+#Description - Plot parametric function as sketch
 
 import adsk.core, adsk.fusion, traceback
 import math
@@ -27,13 +29,6 @@ defaultCurveFunctionZ = 't'
 defaultTStart = '0'
 defaultTEnd   = '2*pi'
 defaultTStep  = '0.1'
-
-# defaultBodyDiameter = 0.5
-# defaultHeadHeight = 0.3125
-# defaultBodyLength = 2.0
-# defaultCutAngle = 30.0 * (math.pi / 180)
-# defaultChamferDistance = 0.03845
-# defaultFilletRadius = 0.02994
 
 # global set of event handlers to keep them referenced for the duration of the command
 handlers = []
@@ -142,6 +137,7 @@ def frange(x, y, jump=1.0):
         i += 1.0
         x = x0 + i * jump
         yield x
+    #yields last one to ensure closed curves
     yield y
 
 class Curve:

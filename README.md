@@ -7,7 +7,7 @@ One of the missing features of fusion 360 is the ability to generate curves acco
 
 # Installation
 
-Running `make` in the project directory should copy the script into the correct folder on a mac. On other OSes you need to manually copy it into the corresponding folder. Additionally copy the libraries described in requirements to the same folder. 
+Running `make` in the project directory should copy the script into the correct folder on a mac. On other OSes you need to manually copy it into the corresponding folder.
 
 
 
