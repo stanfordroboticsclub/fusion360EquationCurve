@@ -209,8 +209,7 @@ def run(context):
         if not cmdDef:
             cmdDef = commandDefinitions.addButtonDefinition('Equation Curve',
                     'Create curve from equation',
-                    'Create sketch curve from parametric equation',
-                    './resources') # relative resource file path is specified
+                    'Create sketch curve from parametric equation')
 
         onCommandCreated = CurveCommandCreatedHandler()
         cmdDef.commandCreated.add(onCommandCreated)
